@@ -37,12 +37,15 @@ def calc_inverse_matrix(n,A):
       for k in range(n):
         A[i][k]+=coe*A[j][k]
         B[i][k]+=coe*B[j][k]
+
   for j_2 in range(n-1,0,-1):
     for i_2 in range(j_2-1,-1,-1):
       coe_2 = -A[i_2][j_2]/A[j_2][j_2]
       for k_2 in range(n):
         B[i_2][k_2]+=coe_2*B[j_2][k_2]
+
   for i_3 in range(n):
     for j_3 in range(n):
       B[i_3][j_3]=B[i_3][j_3]/A[i_3][i_3]
+      
   return B

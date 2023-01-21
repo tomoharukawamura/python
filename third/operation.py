@@ -22,6 +22,7 @@ def n_th_eigen_value(n,A,y_0,err,pre_eigen_vectors):
     if times>=2:
       diff=inner_pro - pre_res
     pre_res=inner_pro
+
   return {
       'vec':y,
       'val':inner_pro
@@ -42,6 +43,7 @@ def calc_eigen(n,y_0,is_inv):
         'freq':freqency,
         'vec':vec
     })
+    
   return res_dict
 
 # プロットする

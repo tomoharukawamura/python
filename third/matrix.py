@@ -9,5 +9,6 @@ def prepare_matrix(n):
       matrix[i][i]=-2
       matrix[i][i+1]=1
       matrix[i+1][i]=1
+      
   return matrix
 
