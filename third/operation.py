@@ -5,10 +5,11 @@ from . import utils
 from . import matrix
 
 #n番目の固有値と固有ベクトルを求める
-def n_th_eigen_value(n,A,y_0,err,pre_eigen_vectors):
+def n_th_eigen_value(n,A,y_0,pre_eigen_vectors,is_inv):
   y=y_0
   diff=1
   times=0
+  err=10**-10
   while abs(diff) > err:
     times+=1
     internal_y=utils.matvec(n,A,y)
@@ -25,7 +26,7 @@ def n_th_eigen_value(n,A,y_0,err,pre_eigen_vectors):
 
   return {
       'vec':y,
-      'val':inner_pro
+      'val':1/inner_pro if is_inv else inner_pro
   }
 
 # まえの操作をn回繰り返す
@@ -33,10 +34,9 @@ def calc_eigen(n,y_0,is_inv):
   eigen_vecs=[]
   res_dict=[]
   A= utils.calc_inverse_matrix(n,matrix.prepare_matrix(n)) if is_inv else matrix.prepare_matrix(n)
-  err=10**-10
   for i in range(1,n+1):
-    dict=n_th_eigen_value(n,A,y_0,err,eigen_vecs)
-    freqency=math.sqrt(-1/dict['val']) if is_inv else math.sqrt(-dict['val'])
+    dict=n_th_eigen_value(n,A,y_0,eigen_vecs,is_inv)
+    freqency=math.sqrt(-dict['val'])
     vec=dict['vec']
     eigen_vecs.append(vec)
     res_dict.append({
