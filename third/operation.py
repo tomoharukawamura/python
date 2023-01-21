@@ -1,8 +1,8 @@
 from numpy.matrixlib.defmatrix import matrix
 import matplotlib.pyplot as plt
 import math
-import utils
-import matrix
+from . import utils
+from . import matrix
 
 #n番目の固有値と固有ベクトルを求める
 def n_th_eigen_value(n,A,y_0,err,pre_eigen_vectors):
@@ -45,15 +45,15 @@ def calc_eigen(n,y_0,is_inv):
   return res_dict
 
 # プロットする
-def plot_and_freq(n,y,is_inv):
-  dicts=calc_eigen(n,y,is_inv)
+def plot_and_freq(y,is_inv):
+  dicts=calc_eigen(len(y),y,is_inv)
   for dict in dicts:
     vec=[0]
     for num in dict['vec']:
       ratio= num/dict['vec'][0]
       vec.append(ratio)
     plt.plot(vec)
-    plt.show()
     vec.pop(0)
     dict['vec']=vec
-  return dicts
+  print(dicts)
+  plt.show()
