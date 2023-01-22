@@ -27,25 +27,3 @@ def inner_product(n, x, y):
         res += x[i]*y[i]
 
     return res
-
-# 逆行列を計算
-def calc_inverse_matrix(n,A):
-  B=np.eye(n)
-  for j in range(0,n,1):
-    for i in range(j+1,n,1):
-      coe = -A[i][j]/A[j][j]
-      for k in range(n):
-        A[i][k]+=coe*A[j][k]
-        B[i][k]+=coe*B[j][k]
-
-  for j_2 in range(n-1,0,-1):
-    for i_2 in range(j_2-1,-1,-1):
-      coe_2 = -A[i_2][j_2]/A[j_2][j_2]
-      for k_2 in range(n):
-        B[i_2][k_2]+=coe_2*B[j_2][k_2]
-
-  for i_3 in range(n):
-    for j_3 in range(n):
-      B[i_3][j_3]=B[i_3][j_3]/A[i_3][i_3]
-      
-  return B
